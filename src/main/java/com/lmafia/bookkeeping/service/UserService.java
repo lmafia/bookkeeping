@@ -18,13 +18,13 @@ public class UserService {
     @Resource
     private DSLContext dslContext;
 
-    public UserRecord findUserById(int userId) {
+    public UserRecord getUserById(int userId) {
         return dslContext.selectFrom(User.USER)
             .where(User.USER.USER_ID.eq(userId))
             .fetchOne();
     }
 
-    public void addUser(UserRecord user) {
+    public void createUser(UserRecord user) {
         dslContext.insertInto(User.USER)
             .set(User.USER.USERNAME, user.getUsername())
             .set(User.USER.PASSWORD, user.getPassword())
